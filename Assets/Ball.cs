@@ -17,7 +17,7 @@ public class Ball : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 previous = this.rigidbody2D.velocity;
+		Vector3 previous = this.GetComponent<Rigidbody2D>().velocity;
 		Vector3 direction = previous;
 
 				if (Input.GetKeyDown(KeyCode.Space)) {
@@ -56,17 +56,17 @@ public class Ball : MonoBehaviour {
 
 		if (previous.x != direction.x || previous.y != direction.y ) {
 
-			this.rigidbody2D.velocity = direction * speed;
-			Debug.Log (this.rigidbody2D.velocity.ToString () + ". Speed: " + speed);
-			status.text = this.rigidbody2D.velocity.ToString () + ". Speed: " + speed;
+			this.GetComponent<Rigidbody2D>().velocity = direction * speed;
+			Debug.Log (this.GetComponent<Rigidbody2D>().velocity.ToString () + ". Speed: " + speed);
+			status.text = this.GetComponent<Rigidbody2D>().velocity.ToString () + ". Speed: " + speed;
 		}
 	}
 
 	public void OnSliderChanged() {
 		speed = (int) speedSlider.value;
-		this.rigidbody2D.velocity = this.rigidbody2D.velocity.normalized * speed;
+		this.GetComponent<Rigidbody2D>().velocity = this.GetComponent<Rigidbody2D>().velocity.normalized * speed;
 
-		status.text = this.rigidbody2D.velocity.ToString () + ". Changed speed to " + speed;
+		status.text = this.GetComponent<Rigidbody2D>().velocity.ToString () + ". Changed speed to " + speed;
 		Debug.Log ("Changed speed to " + speed);
 	}
 }
